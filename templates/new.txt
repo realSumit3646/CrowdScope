@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrowdScope</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    
+    <!-- Header -->
+    <header class="bg-[#1E2A47] text-white p-5 flex justify-between items-center">
+        <h1 class="text-xl font-bold">CrowdScope</h1>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="#" class="hover:text-pink-400">Home</a></li>
+                <li><a href="#" class="hover:text-pink-400">FAQ</a></li>
+                <li><a href="#" class="hover:text-pink-400">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="bg-[#1E2A47] text-white text-center py-20 px-5">
+        <h2 class="text-3xl font-semibold">Unlock Market Insights with Real Public Sentiments</h2>
+        <p class="mt-4">Welcome to CrowdScope — your gateway to data-driven business decisions. <br>We analyze real-time discussions from Reddit to uncover genuine public opinions.</p>
+        <button class="mt-6 px-6 py-2 bg-pink-500 rounded text-white"><a href="#analyze-section">Get Started</a></button>
+    </section>
+    
+    <!-- Sentiment Analysis Section -->
+    <section id="analyze-section" class="flex flex-col items-center justify-center py-16 px-6">
+        <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md text-center text-black">
+            <h2 class="text-2xl font-bold text-gray-800">Sentiment Analyzer</h2>
+            
+            <input type="text" id="topic" 
+                class="mt-4 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" 
+                placeholder="Enter a topic (e.g., Bali, Python, Elden Ring, Air Conditioner)">
+
+            <select id="category" class="mt-4 p-2 w-full border border-gray-300 rounded-md">
+                <option value="" disabled selected>Select Category</option>
+                <option value="travel">Travel</option>
+                <option value="education">Education (Courses)</option>
+                <option value="video_games">Video Games</option>
+                <option value="electronics">Electronic Appliances</option>
+            </select>
+
+            <button onclick="analyze()"
+                class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                Analyze
+            </button>
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="mt-4 hidden">
+                <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-opacity-50"></div>
+                <p class="text-gray-600 mt-2">Analyzing...</p>
+            </div>
+
+            <div id="response" class="mt-4 text-left p-3 bg-gray-50 border rounded-md hidden"></div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="bg-[#1E2A47] text-center py-16 px-6">
+        <h2 class="text-3xl font-semibold">Main Features</h2>
+        <p class="mt-4">CrowdScope analyzes social media discussions to uncover public sentiment, providing industry-specific insights for travel, education, gaming, and electronics.</p>
+    </section>
+    
+    <!-- Team Members Section -->
+    <section class="relative bg-[#152549] text-white py-16 px-6">
+        <h2 class="text-3xl font-semibold text-center mb-12">Team Members</h2>
+        <div class="flex flex-wrap justify-center gap-10">
+            <div class="text-center">
+                <img src="./ad.jpeg" alt="Mohammed Adeeb" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg">Mohammed Adeeb</p>
+            </div>
+            <div class="text-center">
+                <img src="./lak.jpeg" alt="Lakshya Garg" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg">Lakshya Garg</p>
+            </div>
+            <div class="text-center">
+                <img src="./ash.jpeg" alt="Ashutosh Kumar" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg">Ashutosh Kumar</p>
+            </div>
+            <div class="text-center">
+                <img src="./sum.jpeg" alt="Sumit Barik" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg">Sumit Barik</p>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        function analyze() {
+            let topic = document.getElementById("topic").value.trim();
+            let category = document.getElementById("category").value;
+            let responseDiv = document.getElementById("response");
+            let loadingDiv = document.getElementById("loading");
+
+            if (!topic || !category) {
+                alert("Please enter a topic and select a category!");
+                return;
+            }
+
+            responseDiv.classList.add("hidden");
+            loadingDiv.classList.remove("hidden");
+
+            fetch("/analyze", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ topic: topic, category: category })
+            })
+            .then(response => response.json())
+            .then(data => {
+                loadingDiv.classList.add("hidden");
+                responseDiv.classList.remove("hidden");
+
+                if (data.error) {
+                    responseDiv.innerHTML = `<span class="text-red-500 font-semibold">Error: ${data.error}</span>`;
+                } else {
+                    responseDiv.innerHTML = `<pre class="whitespace-pre-wrap">${data.response}</pre>`;
+                }
+            })
+            .catch(error => {
+                loadingDiv.classList.add("hidden");
+                responseDiv.classList.remove("hidden");
+                responseDiv.innerHTML = `<span class="text-red-500 font-semibold">Something went wrong!</span>`;
+            });
+        }
+    </script>
+</body>
+</html>
