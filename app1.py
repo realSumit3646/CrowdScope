@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # --- Configure APIs ---
 reddit = praw.Reddit(
-    client_id="1FwX68jsXlIk1JT0P6KlGg",         
-    client_secret="iqDXjaTAajkXHP1Xg7mhywkQiEChJg",
+    client_id="",         
+    client_secret="",
     user_agent="Sentimental_Analysis_Bot"
 )
 
