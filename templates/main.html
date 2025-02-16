@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrowdScope</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        /* Aggressive Background Animation */
+        @keyframes moveBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1e2a47, #152549, #1e2a47, #0f172a);
+            background-size: 400% 400%;
+            animation: moveBg 6s linear infinite;
+            overflow-x: hidden;
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        /* Neon Glow Hover */
+        .neon-glow {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-glow:hover {
+            text-shadow: 0px 0px 15px rgba(255, 0, 150, 0.8);
+            color: #ff00aa;
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .glitch {
+            animation: glitch 0.2s infinite;
+        }
+    </style>
+</head>
+<body class="text-white relative">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header class="bg-[#1E2A47] text-white p-5 flex justify-between items-center">
+        <h1 class="text-xl font-bold glitch">CrowdScope</h1>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="#" class="hover:text-pink-400 neon-glow">Home</a></li>
+                <li><a href="#" class="hover:text-pink-400 neon-glow">FAQ</a></li>
+                <li><a href="#" class="hover:text-pink-400 neon-glow">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-20 px-5">
+        <h2 class="text-3xl font-semibold neon-glow">Unlock Market Insights with Real Public Sentiments</h2>
+        <p class="mt-4">Welcome to CrowdScope — your gateway to data-driven business decisions. <br>We analyze real-time discussions from Reddit to uncover genuine public opinions.</p>
+        <button class="mt-9 px-10 py-5 bg-pink-500 rounded text-white neon-glow"><a href="/index">Get Started</a></button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="text-center py-40 px-6">
+        <h2 class="text-3xl font-semibold neon-glow">Main Features</h2>
+        <p class="mt-4">CrowdScope analyzes social media discussions to uncover public sentiment, providing industry-specific insights.</p>
+        <div class="flex flex-wrap justify-center gap-10 mt-8">
+            <div class="max-w-xs bg-white text-black p-6 rounded-lg shadow-md">
+                <img src="../static/icons/icon1.svg" alt="Icon" class="w-12 mx-auto">
+                <h3 class="text-lg font-bold mt-4 neon-glow">Industry-Specific Analysis</h3>
+                <p class="mt-2">Customized insights for travel, education, gaming, and electronics.</p>
+            </div>
+            <div class="max-w-xs bg-white text-black p-6 rounded-lg shadow-md">
+                <img src="../static/icons/icon2.svg" alt="Icon" class="w-12 mx-auto">
+                <h3 class="text-lg font-bold mt-4 neon-glow">Public Opinion Driven Insights</h3>
+                <p class="mt-2">Analyzes Reddit discussions to uncover genuine public opinions.</p>
+            </div>
+            <div class="max-w-xs bg-white text-black p-6 rounded-lg shadow-md">
+                <img src="../static/icons/icon3.svg" alt="Icon" class="w-12 mx-auto">
+                <h3 class="text-lg font-bold mt-4 neon-glow">Insight-Powered Strategies</h3>
+                <p class="mt-2">Provides strategic advice on pricing, marketing, and growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Members Section -->
+    <section class="relative bg-[#152549] text-white py-16 px-6">
+        <h2 class="text-3xl font-semibold text-center mb-12 neon-glow">Team Members</h2>
+        <div class="flex flex-wrap justify-center gap-10 relative">
+            <div class="text-center">
+                <img src="../static/images/ad.jpeg" alt="Mohammed Adeeb" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg neon-glow">Mohammed Adeeb</p>
+            </div>
+            <div class="text-center">
+                <img src="../static/images/lak.jpeg" alt="Lakshya Garg" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg neon-glow">Lakshya Garg</p>
+            </div>
+            <div class="text-center">
+                <img src="../static/images/ash.jpeg" alt="Ashutosh Kumar" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg neon-glow">Ashutosh Kumar</p>
+            </div>
+            <div class="text-center">
+                <img src="../static/images/sum.jpeg" alt="Sumit Barik" class="w-32 h-32 rounded-full mx-auto border-4 border-white">
+                <p class="mt-4 text-lg neon-glow">Sumit Barik</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* Initialize particles.js */
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80 },
+                shape: { type: "circle" },
+                opacity: { value: 0.6 },
+                size: { value: 3 },
+                line_linked: { enable: true, opacity: 0.3 },
+                move: { enable: true, speed: 3 }
+            }
+        });
+    </script>
+</body>
+</html>
