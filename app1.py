@@ -11,7 +11,7 @@ reddit = praw.Reddit(
     user_agent="Sentimental_Analysis_Bot"
 )
 
-genai.configure(api_key="AIzaSyDZADUzhcw4kqjPLlgRqoesohZbIRiXJqU")
+genai.configure(api_key="")
 model = genai.GenerativeModel("gemini-1.0-pro")
 
 @app.route('/')
